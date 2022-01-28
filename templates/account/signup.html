@@ -1,0 +1,85 @@
+{% extends 'account/base.html' %}
+{% load static %}
+<title>{% block title %}Գրանցում{% endblock %}</title>
+{% block content %}
+    <body>
+    <main>
+        <section class="sign-in-form section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto col-12">
+                        <h1 class="hero-title text-center mb-5">Գրանցում</h1>
+                        <div class="social-login d-flex flex-column w-50 m-auto">
+                            <a href="#" class="btn custom-btn social-btn mb-4">
+                                <i class="fa fa-google-plus"></i> Շարունակել Google - ի միջոցով
+                            </a>
+                            <a href="#" class="btn custom-btn social-btn">
+                                <i class="fa fa-facebook"></i> Շարունակել Facebook - ի միջոցով
+                            </a>
+                            <a href="#" class="btn custom-btn social-btn mb-3">
+                                <i class="fa fa-linkedin"></i> Շարունակել linkedin - ի միջոցով
+                            </a>
+                        </div>
+                        <div class="div-separator w-50 m-auto my-5"><span>Կամ</span></div>
+                        <div class="row">
+                            <div class="col-lg-8 col-11 mx-auto">
+                                {# form starts here-----------> #}
+                                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                                    {% csrf_token %}
+                                    <div class="form-floating">
+                                        <input style="margin-bottom: 30px;" type="text" name="username" id="username"
+                                               class="form-control" placeholder="Մուտքանուն" required>
+                                        <label for="username">Մուտքանուն</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="email" name="email" id="email" class="form-control"
+                                               placeholder="Email address" required>
+                                        <label for="email">Էլ․ Փոստ</label>
+                                    </div>
+                                    <div class="form-floating my-4">
+                                        <input type="password" name="password1" id="password1" class="form-control"
+                                               placeholder="Password" required>
+                                        <label for="password1">Գաղտնաբառ</label>
+                                        <p class="text-center"></p>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="password" name="password2" id="password2" class="form-control"
+                                               placeholder="Password" required>
+                                        <label for="password2">Կրկնեք գաղնաբառը</label>
+                                    </div>
+                                    <button type="submit" class="btn custom-btn form-control mt-4 mb-3">Ստեղծել Հաշիվ
+                                    </button>
+                                    <p class="text-center">
+                                        <a href="{% url 'account_login' %}">Արդեն ու՞նեք հաշիվ։ Խնդրում եմ սեղմեք
+                                            Մուտք</a>
+                                    </p>
+                                </form>
+                                {# form ends here-----------> #}
+                                {# form errors #}
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <div class="alert alert-error">
+                                                <p>{{ error|escape }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <div class="alert alert-error">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                {# form errors ends here #}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+
+

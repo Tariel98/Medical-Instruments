@@ -1,0 +1,65 @@
+{% extends 'account/base.html' %}
+{% load static %}
+<title>{% block title %}Մուտք{% endblock %}</title>
+{% block content %}
+    <body>
+        <main>
+            <section class="sign-in-form section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto col-12">
+                            <h1 class="hero-title text-center mb-5">Մուտք</h1>
+                            <div class="row">
+                                 <div class="social-login d-flex flex-column w-50 m-auto">
+                                <a href="#" class="btn custom-btn social-btn mb-4">
+                                    <i class="fa fa-google-plus"></i> Շարունակել Google - ի միջոցով
+                                </a>
+                                <a href="#" class="btn custom-btn social-btn">
+                                    <i class="fa fa-facebook"></i> Շարունակել Facebook - ի  միջոցով
+                                </a>
+                                <a href="#" class="btn custom-btn social-btn mb-3">
+                                    <i class="fa fa-linkedin"></i> Շարունակել linkedin - ի  միջոցով
+                                </a>
+                            </div>
+                                <div class="col-lg-8 col-11 mx-auto">
+                                {#  form for login #}
+                                    <form class="login" method="POST" action="{% url 'account_login' %}">
+                                        {% csrf_token %}
+                                        <div class="form-floating mb-4 p-0">
+                                            <input type="text" name="login" id="login"  class="form-control" placeholder="Email address or Username" required>
+                                            <label for="login">Մուտքանուն</label>
+                                        </div>
+                                        <div class="form-floating p-0">
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                            <label for="password">Գաղտնաբառ</label>
+                                        </div>
+                                        <p class="text-center"><a href="{% url 'account_reset_password' %}">Մոռացե՞լ եք գաղտնաբառը</a></p>
+                                        <button type="submit" class="btn custom-btn form-control mt-4 mb-3">Մուտք</button>
+                                        <p class="text-center"><a href="{% url 'account_signup' %}">Չունե՞ք անձնական հաշիվ։ Ստեղծեք հիմա</a></p>
+                                    </form>
+                                {# form for login ends here #}
+
+                                {# the errors #}
+                                    {% if form.errors %}
+                                        {% for field in form %}
+                                            {% for error in errors %}
+                                                <div class="alert alert-error">
+                                                    <strong>{{ error|escape }}</strong>
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        {% for error in form.non_field_errors %}
+                                            <div class="alert alert-error">
+                                                <strong>{{ error|escape }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                {# end errors #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+{% endblock %}

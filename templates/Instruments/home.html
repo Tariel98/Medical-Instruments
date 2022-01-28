@@ -1,0 +1,127 @@
+{% extends 'Instruments/base.html' %}
+{% load static %}
+
+{% block title %} Բժշկական սարքավորումներ {% endblock %}
+
+
+{% block content %}
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+
+    <div class="banner header-text">
+        <div class="owl-banner owl-carousel">
+            {% for i in BannerItems %}
+                {% if i.status == 'p' %}
+                    <div class="banner-item-01" style="background-image: url('{{ i.image.url }}');">
+                        <div class="text-content">
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <!-- Banner Ends Here -->
+    {% if user.is_authenticated != True %}
+        <div class="call-to-action">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="inner-content">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4>Մուտք գործեք կամ գրանցվեք և ստացեք տեղեկություն <em>ժամանակակից</em> բժշկական
+                                        սարքավորումների մասին </h4>
+                                    <p></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{% url 'account_login' %}" class="filled-button">Մուտք / Գրանցում</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="latest-products">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="section-heading">
+            <h2> Կատեգորիաներ </h2>
+            <a href="{% url 'products' %}">Դիտել բոլոր սարքավորումները<i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+    {% for i in categories %}
+        <div class="col-md-4">
+            <div class="product-item">
+                <a href="{% url 'CategoryView' i.slug %}"><img src="{{ i.image.url }}  " alt="{{ i.name }}"></a>
+                <div class="down-content">
+                    <a href="{% url 'CategoryView' i.slug %}"><h4>{{ i.name }}</h4></a>
+                    <p>{{ i.description|safe }}</p>
+                    <ul class="stars">
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+
+    <div class="best-features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Մեր կայքի մասին</h2>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="left-content">
+                        <h4>Փնտրու՞մ եք տեղեկատվություն բժշկական սարքերի վերաբերյալ:</h4>
+                        <p><em>Մեր կայքում</em> Դուք կգտնեք ժամանակակից բժշկական սարքավորումների մասին տեղեկություններ։
+                            Ինչպես նաև․</p>
+                        <ul class="featured-list">
+                            <li><a href="#">Կապնվել մեզ հետ</a></li>
+                            <li><a href="#">Առաջարկել Ձեր աջակցությունը կայքին</a></li>
+                            <li><a href="#">Ավելացնել Ձեր սարքավորումը մեր կայքում</a></li>
+                        </ul>
+                        <a href="{% url 'about' %}" class="filled-button">Իմանալ ավելին</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="right-image">
+                        <img src="{% static 'assets/images/feature-image.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-content">
+                        <p>Copyright &copy;Tariel Arakelyan 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+{% endblock %}
+
+

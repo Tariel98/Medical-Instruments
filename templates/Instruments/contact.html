@@ -1,0 +1,157 @@
+{% extends 'Instruments/base.html' %}
+{% load static %}
+{% block title %} Կապ մեզ հետ {% endblock %}
+
+
+
+
+<body>
+{% block content %}
+
+
+    <!-- Page Content -->
+    <div class="page-heading contact-heading header-text">
+        <div id="map">
+            <iframe src="https://maps.google.com/maps?q=Sarnaghbyur&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%"
+                    height="400px"></iframe>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Gtnel mez -->
+    <div class="find-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Անհամբեր սպասում ենք ձեր կարծիքին</h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="left-content">
+                        <p>Կապնվեք մեզ հետ ձեզ անհրաժեշտ ցանկացած տեղեկատվության համար, կարող եք ուղղակիորեն կապվել մեր
+                            թիմի հետ կամ լրացնել ստորև բերված ձևը, մենք անմիջապես կպատասխանենք ձեզ:</p>
+                        <div class="contact-text">
+                            <p>
+                                <i class="fa fa-phone"></i> Հեռ.։ +374 93 18 98 51 <br>
+                                <i class="fa fa-envelope"></i> Էլ․-Փոստ։ <a href="mailto:tarielarakelyan929@gmail.com"
+                                                                            class="email">index@gmail.com</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="send-message">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Ուղարկեք մեզ հաղորդագրություն</h2>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="contact-form">
+                        <form id="contact" action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <fieldset>
+                                        <input name="username" type="text" class="form-control" id="name"
+                                               placeholder="Ամբողջական Անունը" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <fieldset>
+                                        <input name="email" type="text" class="form-control" id="email"
+                                               placeholder="Էլ․-Փոստ" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <fieldset>
+                                        <input name="subject" type="text" class="form-control" id="subject"
+                                               placeholder="Թեմա" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <textarea name="message" rows="6" class="form-control" id="message"
+                                                  placeholder="Ձեր հաղորդագրությունը " required=""></textarea>
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        <button type="submit" id="form-submit" class="filled-button">Ուղարկել</button>
+                                    </fieldset>
+                                    <p>{{ massage }}</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="happy-clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Մեր գործընկերները</h2>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="owl-clients owl-carousel">
+                        {% for i in parters %}
+                            <div class="client-item">
+                                <img src="{{ i.image.url }}" alt="1">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-content">
+                        <p><b> Copyright &copy; 2022 Tariel Arakelyan </b></p>
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+{% endblock %}
+</body>
+
+</html>
