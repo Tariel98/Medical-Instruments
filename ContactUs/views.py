@@ -14,14 +14,8 @@ def contact_view(request):
 
             try:
                 email_subject = f'New contact {form.cleaned_data["email"]}: {form.cleaned_data["subject"]}'
-                print(email_subject)
                 email_message = form.cleaned_data['message']
-                print(email_message)
-                print(settings.CONTACT_EMAIL)
-                print(settings.ADMIN_EMAILS)
                 send_mail(email_subject, email_message, settings.CONTACT_EMAIL, settings.ADMIN_EMAILS)
-
-                print(settings.CONTACT_EMAIL)
 
             except:
                 massage += "Ձեր հաղորդագրությունը չի ուղարկվել"
