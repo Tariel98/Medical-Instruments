@@ -1,1 +1,2 @@
-Barev sa grec tariely
+Barev sa grec Tariely
+Esel grec sargisy
