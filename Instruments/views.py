@@ -20,7 +20,7 @@ class HomeListView(ListView):
 
 
 class ProductView(ListView):
-    template_name = 'ContactUs/../templates/Instruments/products.html'
+    template_name = 'ContactUs/products.html'
     queryset = Instrument.objects.filter(status='p')
     context_object_name = 'instruments'
 
@@ -31,7 +31,7 @@ class ProductView(ListView):
 
 
 class CategoryView(ListView):
-    template_name = 'ContactUs/../templates/Instruments/products.html'
+    template_name = 'ContactUs/products.html'
     queryset = Category.objects.filter(status='p')
 
     def get_context_data(self, **kwargs):
