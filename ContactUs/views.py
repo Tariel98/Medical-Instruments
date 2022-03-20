@@ -25,16 +25,16 @@ def contact_view(request):
                 send_mail(email_subject, email_message, settings.CONTACT_EMAIL, [form.cleaned_data['email']])
                 print(form.cleaned_data['email'])
                 massage +='Մենք ստացել ենք Ձեր նամակը'
-            return render(request, 'Instruments/contact.html', {'massage': massage})
+            return render(request, 'Instruments/../templates/ContactUs/contact.html', {'massage': massage})
 
         else:
             print(form.errors)
             for i in form.errors:
                 massage += form.errors[i]
-            return render(request, 'Instruments/contact.html', {'massage': massage})
+            return render(request, 'Instruments/../templates/ContactUs/contact.html', {'massage': massage})
     form = ContactForm()
     context = {'form': form, 'parters': Partner.objects.filter(status='p')}
-    return render(request, 'Instruments/contact.html', context)
+    return render(request, 'Instruments/../templates/ContactUs/contact.html', context)
 
 
 
