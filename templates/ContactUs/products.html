@@ -37,7 +37,8 @@
                             <a href="{% url 'InstrumentView' i.slug %}" > <img src="{{ i.image.url }}" alt=""></a>
                             <div class="down-content">
                               <a href="{% url 'InstrumentView' i.slug %}"><h4>{{ i.name }}</h4></a>
-                             <a href="{% url 'InstrumentView' i.slug %}"> <p>Իմանալ ավելին</p> </a>
+                                <p>{{ i.short_description|safe }}</p>
+                                  <a href="{% url 'InstrumentView' i.slug %}"> <p>Իմանալ ավելին</p> </a>
                               <ul class="stars">
                                 <li><i class="fa fa-star"></i></li>
                                 <li><i class="fa fa-star"></i></li>
