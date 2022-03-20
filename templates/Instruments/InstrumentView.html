@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="filters">
                         <ul>
-                            <li class="active"><a href="{% url 'products' %}">Բոլոր սարքերը</a>></li>
+                            <li class="active"><a href="{% url 'products' %}">Բոլոր սարքերը</a></li>
                             {% for i in categories %}
                                 <li class="active"><a href="{% url 'CategoryView' i.slug %}"> {{ i.name }}</a></li>
                             {% endfor %}

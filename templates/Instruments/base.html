@@ -59,13 +59,13 @@
                     </li>
                     {% if user.is_superuser or user.is_staff %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/">Go to admin</a>
+                            <a class="nav-link" href="/admin/">Ադմին․ աշխատասենյակ</a>
                         </li>
                     {% endif %}
 
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Logouth</a>
+                            <a class="nav-link" href="{% url 'account_logout' %}">Ելք</a>
                         </li>
                     {% endif %}
                 </ul>
