@@ -6,3 +6,6 @@ install pip3
 3)pip install django-ckeditor
 4)pip install django-allauth
 5)pip install pillow
+
+or run this commande 
+pip install -r rec.txt
