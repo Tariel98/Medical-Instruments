@@ -6,3 +6,5 @@ install pip3
 3)pip install django-ckeditor
 4)pip install django-allauth
 5)pip install pillow
+
+if you want to run server --->>>>>python3 manage.py runserver

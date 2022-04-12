@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
           rel="stylesheet">
 
@@ -20,6 +21,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/templatemo-sixteen.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <script src="https://kit.fontawesome.com/b8991598b2.js"></script>
+    <link rel="stylesheet" href="{% static 'assets/css/logo.css' %}">
 
 </head>
 <body>
@@ -33,7 +36,10 @@
     </div>
 </div>
 <!-- ***** Preloader End ***** -->
+
+
 <header class="">
+
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'Home' %}"><h2>E - <em>ME</em></h2></a>
@@ -68,6 +74,12 @@
                             <a class="nav-link" href="{% url 'account_logout' %}">Ելք</a>
                         </li>
                     {% endif %}
+                    <li>
+              <form class="example" action="action_page.php">
+                  <input type="text" placeholder="Search.." name="search">
+               <button class="kt" type="submit"><i class="fa fa-search"></i></button>
+                                   </form>
+                    </li>
                 </ul>
             </div>
         </div>
