@@ -8,3 +8,4 @@ install pip3
 5)pip install pillow
 
 if you want to run server --->>>>>python3 manage.py runserver
+or run this commande 
