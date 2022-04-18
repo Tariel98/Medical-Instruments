@@ -1,3 +1,4 @@
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -43,9 +44,15 @@ class Instrument(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(unique=True)
     short_description = RichTextUploadingField(max_length=500)
-    full_description = RichTextUploadingField()
+    full_description1 = RichTextUploadingField()
+    full_description2 = RichTextUploadingField()
     instrument_category = models.ManyToManyField(Category,  verbose_name='Main Category', related_name='Category')
-    image = models.ImageField('image', upload_to='InstrumentsImage/%Y/%m/%d',)
+    image = models.ImageField(upload_to='InstrumentsImage/%Y/%m/%d', verbose_name='Picture for All View')
+    image2 = models.ImageField(upload_to='InstrumentsImage/%Y/%m/%d', verbose_name='Picture 1 for Detail View')
+    image3 = models.ImageField(upload_to='InstrumentsImage/%Y/%m/%d', verbose_name='Picture 2 for Detail View')
+    video = models.FileField(upload_to='InstrumentsVideos/%Y/%m/%d', null=True,
+                             validators=[
+                                 FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
     status = models.CharField(max_length=1, choices=satus_choice, default='p')
     date = models.DateTimeField(default=timezone.now)
 
