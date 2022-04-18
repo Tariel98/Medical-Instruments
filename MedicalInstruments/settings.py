@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     # my apps
-    'LoginRegister',
+    # 'LoginRegister',
     'ContactUs',
     'Instruments',
     'ckeditor_uploader',
