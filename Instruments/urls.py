@@ -7,10 +7,11 @@ from .views import *
 
 urlpatterns = [
     path('', HomeListView.as_view(), name='Home'),
-    path('Products', ProductView.as_view(), name='products'),
-    path('About', about, name='about'),
-    path('categories/<slug:slug>', CategoryView.as_view(), name='CategoryView'),
-    path('instrument/<slug:slug>', InstrumentView.as_view(), name='InstrumentView'),
+    path('Products/', ProductView.as_view(), name='products'),
+    path('About/', about, name='about'),
+    path('categories/<slug:slug>/', CategoryView.as_view(), name='CategoryView'),
+    path('instrument/<slug:slug>/', InstrumentView.as_view(), name='InstrumentView'),
+    path('search/', search, name='search')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

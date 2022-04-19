@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from django.views.generic import ListView, DetailView
+from .forms import SearchForm
 
 
 def about(request):
@@ -51,3 +52,20 @@ class InstrumentView(DetailView):
         context = super(InstrumentView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.filter(status='p')
         return context
+
+
+def search(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            return render(request, 'Instruments/products.html', {'instruments':
+                                                                     Instrument.objects.filter(
+                                                                         name__contains=request.POST[
+                                                                             'search'].upper()
+                                                                     ) |
+                                                                     Instrument.objects.filter(
+                                                                         name__contains=request.POST[
+                                                                             'search'].lower()),
+                                                                 'categories': Category.objects.order_by(
+                                                                     '-date').filter(status='p')})
+    return redirect('products')

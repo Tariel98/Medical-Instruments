@@ -3,90 +3,92 @@
 {% block title %} Սարքեր {% endblock %}
 
 <body>
-  {%  block content %}
+{% block content %}
     <!-- Page Content -->
     <div class="page-heading products-heading header-text">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="text-content">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <div class="products">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="filters">
-              <ul>
-                  <li class="active" > <a href="{% url 'products'  %}">Բոլոր սարքերը</a>></li>
-                  {% for i in categories %}
-                  <li class="active" ><a href="{% url 'CategoryView' i.slug %}"> {{ i.name }}</a></li>
-                  {% endfor %}
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="filters-content">
-                <div class="row grid">
-                    {% for i in instruments %}
-                        <div class="col-lg-4 col-md-4 all dev">
-                          <div class="product-item">
-                            <a href="{% url 'InstrumentView' i.slug %}" > <img src="{{ i.image.url }}" alt=""></a>
-                            <div class="down-content">
-                              <a href="{% url 'InstrumentView' i.slug %}"><h4>{{ i.name }}</h4></a>
-                                <p>{{ i.short_description|safe }}</p>
-                                  <a href="{% url 'InstrumentView' i.slug %}"> <p>Իմանալ ավելին</p> </a>
-                              <ul class="stars">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                    {% endfor %}
-                    {% for i in filtred_Instruments %}
-                        <div class="col-lg-4 col-md-4 all dev">
-                          <div class="product-item">
-                            <a href="{% url 'InstrumentView' i.slug %}" > <img src="{{ i.image.url }}" alt=""></a>
-                            <div class="down-content">
-                              <a href="{% url 'InstrumentView' i.slug %}"><h4>{{ i.name }}</h4></a>
-                             <a href="{% url 'InstrumentView' i.slug %}"> <p>Իմանալ ավելին</p> </a>
-                              <ul class="stars">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                    {% endfor %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="filters">
+                        <ul>
+                            <li class="active"><a href="{% url 'products' %}">Բոլոր սարքերը</a>></li>
+                            {% for i in categories %}
+                                <li class="active"><a href="{% url 'CategoryView' i.slug %}"> {{ i.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="filters-content">
+                        <div class="row grid">
+                            {% for i in instruments %}
+                                <div class="col-lg-4 col-md-4 all dev">
+                                    <div class="product-item">
+                                        <a href="{% url 'InstrumentView' i.slug %}"> <img src="{{ i.image.url }}"
+                                                                                          alt=""></a>
+                                        <div class="down-content">
+                                            <a href="{% url 'InstrumentView' i.slug %}"><h4>{{ i.name }}</h4></a>
+                                            <p>{{ i.short_description|safe }}</p>
+                                            <a href="{% url 'InstrumentView' i.slug %}"><p>Իմանալ ավելին</p></a>
+                                            <ul class="stars">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% for i in filtred_Instruments %}
+                                <div class="col-lg-4 col-md-4 all dev">
+                                    <div class="product-item">
+                                        <a href="{% url 'InstrumentView' i.slug %}"> <img src="{{ i.image.url }}"
+                                                                                          alt=""></a>
+                                        <div class="down-content">
+                                            <a href="{% url 'InstrumentView' i.slug %}"><h4>{{ i.name }}</h4></a>
+                                            <a href="{% url 'InstrumentView' i.slug %}"><p>Իմանալ ավելին</p></a>
+                                            <ul class="stars">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <footer>
-      <div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <p>Copyright &copy; 2022 </p>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-content">
+                        <p>Copyright &copy; 2022 </p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </footer>
 
 
-{%  endblock %}
+{% endblock %}
 </body>
 

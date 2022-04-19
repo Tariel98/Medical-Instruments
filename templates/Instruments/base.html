@@ -75,10 +75,11 @@
                         </li>
                     {% endif %}
                     <li>
-              <form class="example" action="action_page.php">
-                  <input type="text" placeholder="Search.." name="search">
-               <button class="kt" type="submit"><i class="fa fa-search"></i></button>
-                                   </form>
+                        <form class="example" method="post" action="{% url 'search' %}">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Search.." name="search">
+                            <button class="kt" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </li>
                 </ul>
             </div>
