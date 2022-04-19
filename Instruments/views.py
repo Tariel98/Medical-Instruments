@@ -58,14 +58,9 @@ def search(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            return render(request, 'Instruments/products.html', {'instruments':
-                                                                     Instrument.objects.filter(
-                                                                         name__icontains=request.POST[
-                                                                             'search'].upper()
-                                                                     ) |
-                                                                     Instrument.objects.filter(
-                                                                         name__icontains=request.POST[
-                                                                             'search'].lower()),
-                                                                 'categories': Category.objects.order_by(
-                                                                     '-date').filter(status='p')})
+            return render(request, 'Instruments/products.html', {
+                'instruments': [i for i in Instrument.objects.all() if
+                                request.POST['search'].lower() in i.name.lower()],
+                'categories': Category.objects.filter(status='p')})
+
     return redirect('products')

@@ -450,11 +450,11 @@ header .navbar {
 }
 
 .product-item .down-content h4:hover{
-	font-size: 20px;
+	font-size: 17px;
 	color: #F33F3F;
 	margin-bottom: 20px;
 	text-decoration: none;
-	transform: scale(1.2);
+
 }
 
 .product-item .down-content h6 {

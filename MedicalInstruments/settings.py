@@ -166,12 +166,12 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CONTACT_EMAIL = 'medicalinstruments16@gmail.com'
 ADMIN_EMAILS = ['tarielarakelyan929@gmail.com', 'khachatryansargis2000@gmail.com' ]
 
-# Twilio SendGrid
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'medicalinstruments16@gmail.com'
+EMAIL_HOST_PASSWORD = 'Tariel1998@'
 
 # Allauth settings
 SITE_ID = 1

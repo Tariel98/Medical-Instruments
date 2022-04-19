@@ -42,8 +42,10 @@ class Category(models.Model):
 
 class Instrument(models.Model):
     name = models.CharField(max_length=200, unique=True)
+    header2 = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
     short_description = RichTextUploadingField(max_length=500)
+    short_description2 = RichTextUploadingField(max_length=2000)
     full_description1 = RichTextUploadingField()
     full_description2 = RichTextUploadingField()
     instrument_category = models.ManyToManyField(Category,  verbose_name='Main Category', related_name='Category')

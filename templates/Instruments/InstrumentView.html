@@ -7,7 +7,7 @@
 {% block add_links %}
 <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
 <link rel="stylesheet" href="{% static 'assets/css/fontawesome2.css' %}"/>
-<link rel="stylesheet" href="{% static  'assets/css/tooplate-style.css' %}"/>
+<link rel="stylesheet" href="{% static  'assets/css/instrument-about.css' %}"/>
 <link rel="stylesheet" href="{% static 'assets/css/owl2.css' %}"/>
 <link rel="stylesheet" href="{% static  'assets/css/lightbox2.css' %}"/>
 <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
@@ -48,18 +48,19 @@
 </div>
     <section class="section about-me" data-section="section1">
         <div class="container">
-            <div class="top-header">
 
+              <div class="section-vernagir">
+
+                <h2>{{ instruments.name }}</h2>
+                <div class="line-dec"></div>
+                  <p>{{ instruments.short_description2 | safe }}</p>
+            </div>
+            <div class="top-header">
                 <video controls="controls" preload="preload">
                     <source src="{{ MEDIA_URL }} {{ instruments.video.url }}" type="video/mp4"></source>
                 </video>
             </div>
-            <div class="section-vernagir">
 
-                <h2>{{ instruments.name }}</h2>
-                <div class="line-dec"></div>
-                <span>{{ instruments.short_description | safe }}</span>
-            </div>
             <div class="aj-nkar">
                 <div class="row">
 
@@ -67,14 +68,12 @@
                         <div class="left-text">
                             <h4>Modern Web Design</h4>
                             <p> {{ instruments.full_description1 | safe }}</p>
-                            <div class="white-button">
-                                <a href="#">Read More</a>
-                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="right-image">
-                            <img src="{{ instruments.image2.url }}" alt="Mountain Reflection"/>
+                            <img src="{{ instruments.image2.url }}">
                         </div>
                     </div>
 
@@ -85,17 +84,15 @@
 
                     <div class="col-md-4">
                         <div class="left-image">
-                            <img src="{{ instruments.image3.url }}" alt="Nature Girl"/>
+                            <img src="{{ instruments.image3.url }}"/>
                         </div>
                     </div>
 
                     <div class="col-md-8">
                         <div class="right-text">
-                          <h4>Best Template for you!</h4>
+                          <h4>{{ instruments.header2 }}</h4>
                             <p>{{ instruments.full_description2 | safe }}</p>
-                            <div class="white-button">
-                                <a href="#">Read More</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
