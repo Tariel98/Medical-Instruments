@@ -60,11 +60,11 @@ def search(request):
         if form.is_valid():
             return render(request, 'Instruments/products.html', {'instruments':
                                                                      Instrument.objects.filter(
-                                                                         name__contains=request.POST[
+                                                                         name__icontains=request.POST[
                                                                              'search'].upper()
                                                                      ) |
                                                                      Instrument.objects.filter(
-                                                                         name__contains=request.POST[
+                                                                         name__icontains=request.POST[
                                                                              'search'].lower()),
                                                                  'categories': Category.objects.order_by(
                                                                      '-date').filter(status='p')})
