@@ -306,6 +306,7 @@ header .navbar {
 	font-family: 'FontAwesome';
 }
 
+
 /* Banner Style */
 .banner {
 	position: relative;
@@ -745,7 +746,7 @@ footer .inner-content p a {
 
 
 
-/* Clients */
+/* Գործընկերներ */
 
 .happy-clients {
 	margin-top: 100px;
@@ -996,6 +997,7 @@ border-radius: 20px;
 
 .col-md-6{
 	margin-bottom: 60px;
+	padding: 15px;
 }
 
 @media (max-width: 992px) {
