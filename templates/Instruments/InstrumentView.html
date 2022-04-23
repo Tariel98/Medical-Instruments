@@ -1,16 +1,15 @@
-
 {% extends 'Instruments/base.html' %}
 {% load static %}
 {% block title %} {{ instruments.name }} {% endblock %}
 
 # style links
 {% block add_links %}
-<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
-<link rel="stylesheet" href="{% static 'assets/css/fontawesome2.css' %}"/>
-<link rel="stylesheet" href="{% static  'assets/css/instrument-about.css' %}"/>
-<link rel="stylesheet" href="{% static 'assets/css/owl2.css' %}"/>
-<link rel="stylesheet" href="{% static  'assets/css/lightbox2.css' %}"/>
-<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome2.css' %}"/>
+    <link rel="stylesheet" href="{% static  'assets/css/instrument-about.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/owl2.css' %}"/>
+    <link rel="stylesheet" href="{% static  'assets/css/lightbox2.css' %}"/>
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 {% block content %}
@@ -41,65 +40,89 @@
             </div>
         </div>
     </div>
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="section-heading">
+            <h2> {{ instruments.name }} մոդելներ</h2>
+        </div>
+    </div>
+    {% for i in instruments.instrument_model.all %}
+        {% if forloop.counter < 4 %}
+        <div class="col-md-4">
+            <div class="product-item">
+                <a href="{% url 'model_detail_view' i.id %}"><img src="{{ i.image.url }}  " alt="{{ i.name }}"></a>
+                <div class="down-content">
+                    <a href="{% url 'model_detail_view' i.id %}"><h4>{{ i.name }}</h4></a>
+                </div>
+            </div>
+        </div>
+        {% elif forloop.counter < 5 %}
+            <a href="{% url 'all_models' instruments.id %}">Տեսնել Ավելին</a>
+        {% endif %}
+    {% endfor %}
+
 
 
     <div id="ej-wrapper">
-    <!-- Sidebar Menu -->
-</div>
+        <!-- Sidebar Menu -->
+    </div>
     <section class="section about-me" data-section="section1">
         <div class="container">
 
-              <div class="section-vernagir">
+            <div class="section-vernagir">
 
                 <h2>{{ instruments.name }}</h2>
                 <div class="line-dec"></div>
-                  <p>{{ instruments.short_description2 | safe }}</p>
+                <p>{{ instruments.short_description2 | safe }}</p>
             </div>
             <div class="top-header">
                 <video controls="controls" preload="preload">
                     <source src="{{ MEDIA_URL }} {{ instruments.video.url }}" type="video/mp4"></source>
                 </video>
             </div>
-
-            <div class="aj-nkar">
-                <div class="row">
-
-                    <div class="col-md-8">
-                        <div class="left-text">
-
-                            <p> {{ instruments.full_description1 | safe }}</p>
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="right-image">
-                            <img src="{{ instruments.image2.url }}">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="left-image-post">
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <div class="left-image">
-
-                            <img src="{{ instruments.image3.url }}"/>
+            {% for i in instruments.instrument_Content.all %}
+                {% if not forloop.counter|divisibleby:2 %}
+                    <div class="aj-nkar">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="left-text">
+                                    {% if i.header is not None %}
+                                        <h4>{{ i.header | safe }}</h4>
+                                    {% endif %}
+                                <p> {{ i.full_description | safe }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="right-image">
+                                    <img src="{{ i.image.url }}">
+                                </div>
+                            </div>
 
                         </div>
                     </div>
+                {% else %}
+                    <div class="left-image-post">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="left-image">
+                                    <img src="{{ i.image.url }}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="right-text">
+                                    <h4>{{ i.header | safe }}</h4>
+                                    <div class="line-dec"></div>
+                                    <p> {{ i.full_description | safe }}</p>
 
-                    <div class="col-md-8">
-                        <div class="right-text">
-                          <h4>{{ instruments.header2 }}</h4>
-                                <div class="line-dec"></div>
-                            <p>{{ instruments.full_description2 | safe }}</p>
-
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
+                {% endif %}
+            {% endfor %}
+
         </div>
     </section>
 

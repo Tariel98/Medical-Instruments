@@ -1,0 +1,108 @@
+{% extends 'Instruments/base.html' %}
+{% load static %}
+{% block title %} {{ instruments.name }} {% endblock %}
+
+# style links
+{% block add_links %}
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome2.css' %}"/>
+    <link rel="stylesheet" href="{% static  'assets/css/instrument-about.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/owl2.css' %}"/>
+    <link rel="stylesheet" href="{% static  'assets/css/lightbox2.css' %}"/>
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="page-heading products-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="filters">
+                        <ul>
+                            <li class="active"><a href="{% url 'products' %}">Բոլոր սարքերը</a></li>
+                            {% for i in categories %}
+                                <li class="active"><a href="{% url 'CategoryView' i.slug %}"> {{ i.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="ej-wrapper">
+        <!-- Sidebar Menu -->
+    </div>
+    <section class="section about-me" data-section="section1">
+        <div class="container">
+
+            <div class="section-vernagir">
+                <h2>{{ models.name }}</h2>
+                <div class="line-dec"></div>
+                <p>{{ models.short_description | safe }}</p>
+            </div>
+            <div class="top-header">
+                 <img src="{{ models.big_image.url }}"/>
+            </div>all()
+            {% for i in models.model_content.all %}
+                {% if not forloop.counter|divisibleby:2 %}
+                    <div class="aj-nkar">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="left-text">
+                                    {% if i.header is not None %}
+                                        <h4>{{ i.header | safe }}</h4>
+                                    {% endif %}
+                                <p> {{ i.full_description | safe }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="right-image">
+                                    <img src="{{ i.image.url }}">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="left-image-post">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="left-image">
+                                    <img src="{{ i.image.url }}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="right-text">
+                                    <h4>{{ i.header | safe }}</h4>
+                                    <div class="line-dec"></div>
+                                    <p> {{ i.full_description | safe }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
+
+

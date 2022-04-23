@@ -1,7 +1,7 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
-from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor.fields import RichTextField
 
 satus_choice = (
     ('p', 'published'),
@@ -31,7 +31,7 @@ class BannerItems(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(unique=True)
-    description = RichTextUploadingField(null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
     image = models.ImageField('image', upload_to='CategoriesPicture/%Y/%m/%d', )
     status = models.CharField(max_length=1, choices=satus_choice, default='p')
     date = models.DateTimeField(default=timezone.now)
@@ -40,25 +40,60 @@ class Category(models.Model):
         return self.name
 
 
-class Instrument(models.Model):
-    name = models.CharField(max_length=200, unique=True)
-    header2 = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    short_description = RichTextUploadingField(max_length=500)
-    short_description2 = RichTextUploadingField(max_length=2000)
-    full_description1 = RichTextUploadingField()
-    full_description2 = RichTextUploadingField()
-    instrument_category = models.ManyToManyField(Category,  verbose_name='Main Category', related_name='Category')
-    image = models.ImageField(upload_to='InstrumentsImage/%Y/%m/%d', verbose_name='Picture for All View')
-    image2 = models.ImageField(upload_to='InstrumentsImage/%Y/%m/%d', verbose_name='Picture 1 for Detail View')
-    image3 = models.ImageField(upload_to='InstrumentsImage/%Y/%m/%d', verbose_name='Picture 2 for Detail View')
-    video = models.FileField(upload_to='InstrumentsVideos/%Y/%m/%d', null=True,
-                             validators=[
-                                 FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])])
-    status = models.CharField(max_length=1, choices=satus_choice, default='p')
-    date = models.DateTimeField(default=timezone.now)
+class InstrumentContent(models.Model):
+    header = models.CharField(max_length=200, verbose_name='Header', blank=True, null=True)
+    full_description = RichTextField(verbose_name='Full description')
+    image = models.ImageField(upload_to='InstrumentsImage/%Y/%m/%d', verbose_name='Pictures')
+
+    def __str__(self):
+        if self.header is not None:
+            return self.header
+        else:
+            return 'No Header'
+
+
+class ModelContent(models.Model):
+    header = models.CharField(max_length=200, verbose_name='Header', blank=True, null=True)
+    full_description = RichTextField(verbose_name='Full description')
+    image = models.ImageField(upload_to='ModelImage/%Y/%m/%d', verbose_name='Pictures')
+
+    def __str__(self):
+        if self.header is not None:
+            return self.header
+        else:
+            return 'No Header'
+
+
+class InstrumentModel(models.Model):
+    name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='ModelImage/%Y/%m/%d', verbose_name='Pictures')
+    short_description = RichTextField(max_length=500, verbose_name='Short description')
+    big_image = models.ImageField(upload_to='ModelImage/%Y/%m/%d', verbose_name='Header image ')
+    model_content = models.ManyToManyField(ModelContent)
 
     def __str__(self):
         return self.name
 
 
+class Instrument(models.Model):
+    name = models.CharField(max_length=200, unique=True, verbose_name='Instrument Name')
+    slug = models.SlugField(unique=True, verbose_name='Slug')
+    image = models.ImageField(upload_to='InstrumentsImage/%Y/%m/%d')
+    short_description = RichTextField(max_length=500, verbose_name='First Short description')
+    short_description2 = RichTextField(max_length=2000, verbose_name='Second Short description')
+    instrument_category = models.ManyToManyField(Category, verbose_name='Main Category', related_name='Category')
+    instrument_Content = models.ManyToManyField(InstrumentContent, verbose_name='InstrumentContent',
+                                                related_name='InstrumentContent')
+    instrument_model = models.ManyToManyField(InstrumentModel,
+                                              verbose_name='Instrument Model',
+                                              related_name='Instrument_Model')
+    video = models.FileField(upload_to='InstrumentsVideos/%Y/%m/%d', null=True,
+                             validators=[
+                                 FileExtensionValidator(allowed_extensions=['MOV', 'avi', 'mp4', 'webm', 'mkv'])],
+                             verbose_name='Video')
+    status = models.CharField(max_length=1, choices=satus_choice, default='p')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True, )
+
+    def __str__(self):
+        return self.name

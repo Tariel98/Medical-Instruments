@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 # Register your models here.
 
 
+
 def make_published(self, request, queryset):
     queryset.update(status='p')
     self.message_user(request, "successfully marked as published.")
@@ -32,18 +33,25 @@ class CategoryAdmin(admin.ModelAdmin):
     get_image.short_description = 'Picture'
 
 
+admin.site.register(ModelContent)
+admin.site.register(InstrumentModel)
+admin.site.register(InstrumentContent)
+
+
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_filter = ('instrument_category', 'status')
-    readonly_fields = ['date']
     actions = [make_published, make_draft]
-    list_display = ('name', 'status', 'get_image', 'date')
-
-    def get_image(self, obj):
-        return mark_safe(f'<img src={obj.image.url} width="90" height="70"')
-
-    get_image.short_description = 'Picture'
+    list_display = ('name', 'status')
+    fieldsets = (
+        ('Instrument name and slug', {'fields': ('name', 'slug')}),
+        ('Status, category and content', {'fields': ('status', 'instrument_category', 'instrument_Content')}),
+        ('Picture', {'fields': ('image', )}),
+        ('Short descriptions', {'fields': ('short_description', 'short_description2')}),
+        ('Video', {'fields': ('video',)}),
+        ('Instrument_models', {'fields': ('instrument_model', )})
+    )
 
 
 @admin.register(BannerItems)

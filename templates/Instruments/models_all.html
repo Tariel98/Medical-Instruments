@@ -1,0 +1,66 @@
+{% extends 'Instruments/base.html' %}
+{% load static %}
+{% block title %} Սարքեր {% endblock %}
+
+<body>
+{% block content %}
+    <!-- Page Content -->
+    <div class="page-heading products-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="filters">
+                        <ul>
+                            <a href="{% url 'InstrumentView' instruments.slug %}"> Հետ </a>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="filters-content">
+                        <div class="row grid">
+                            {% for i in instruments.instrument_model.all %}
+                                <div class="col-lg-4 col-md-4 all dev">
+                                    <div class="product-item">
+                                        <a href="{% url 'model_detail_view' i.id %}"> <img src="{{ i.image.url }}"
+                                                                                          alt=""></a>
+                                        <div class="down-content">
+                                            <a href="{% url 'model_detail_view' i.id %}"><h4>{{ i.name }}</h4></a>
+                                            <a href="{% url 'model_detail_view' i.id %}"><p>Իմանալ ավելին</p></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-content">
+                        <p>Copyright &copy; 2022 </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+{% endblock %}
+</body>
+
