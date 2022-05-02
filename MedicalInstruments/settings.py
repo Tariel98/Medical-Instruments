@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # my apps
     # 'LoginRegister',
-    'ContactUs',
-    'Instruments',
+    'ContactUs.apps.ContactusConfig',
+    'Instruments.apps.InstrumentsConfig',
     'ckeditor_uploader',
     'ckeditor',
     'allauth',
@@ -73,6 +73,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -87,8 +88,7 @@ ROOT_URLCONF = 'MedicalInstruments.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,14 +137,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = 'hy'
 USE_I18N = True
-
+USE_L10N = True
+TIME_ZONE = 'UTC'
 USE_TZ = True
 
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+
+LANGUAGES = (
+    ('hy', 'Armenian'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

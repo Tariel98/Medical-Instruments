@@ -17,6 +17,10 @@ class Partner(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Գործընկեր'
+        verbose_name_plural = 'Գործընկերներ'
+
 
 class BannerItems(models.Model):
     Image_name = models.CharField(max_length=60, unique=True)
@@ -26,6 +30,10 @@ class BannerItems(models.Model):
 
     def __str__(self):
         return self.Image_name
+
+    class Meta:
+        verbose_name = 'Բանների լուսանկար'
+        verbose_name_plural = 'Բանների լուսանկարներ'
 
 
 class Category(models.Model):
@@ -38,6 +46,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'Բաժին'
+        verbose_name_plural = 'Բաժիններ'
 
 
 class InstrumentContent(models.Model):
@@ -50,7 +61,10 @@ class InstrumentContent(models.Model):
             return self.header
         else:
             return 'No Header'
-
+    class Meta:
+        verbose_name = 'Սարքավորուման կոնտենտ'
+        verbose_name_plural = 'Սարքավորումների կոնտենտներ'
+        
 
 class ModelContent(models.Model):
     header = models.CharField(max_length=200, verbose_name='Header', blank=True, null=True)
@@ -63,6 +77,10 @@ class ModelContent(models.Model):
         else:
             return 'No Header'
 
+    class Meta:
+        verbose_name = 'Մոդել կոնտենտ'
+        verbose_name_plural = 'Մոդել կոնտենտներ'
+
 
 class InstrumentModel(models.Model):
     name = models.CharField(max_length=200)
@@ -74,6 +92,9 @@ class InstrumentModel(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Սարքավորման մոդել'
+        verbose_name_plural = 'Սարքավորման մոդեներ'
 
 class Instrument(models.Model):
     name = models.CharField(max_length=200, unique=True, verbose_name='Instrument Name')
@@ -97,3 +118,7 @@ class Instrument(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Սարքավորում'
+        verbose_name_plural = 'Սարքավորումներ'

@@ -11,3 +11,7 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.username
+
+    class Meta:
+        verbose_name = 'Կապ ադմինիստրատորի հետ'
+        verbose_name_plural = 'Կապ ադմինիստրատորի հետ'

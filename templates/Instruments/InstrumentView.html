@@ -30,9 +30,13 @@
                 <div class="col-md-12">
                     <div class="filters">
                         <ul>
-                            <li class="active"><a href="{% url 'products' %}">Բոլոր սարքերը</a></li>
+                            <li class="active"><a style="text-decoration: none;
+                                                  color: #232323"
+                                                   href="{% url 'products' %}">Բոլոր սարքերը</a></li>
                             {% for i in categories %}
-                                <li class="active"><a href="{% url 'CategoryView' i.slug %}"> {{ i.name }}</a></li>
+                                <li class="active"><a style="text-decoration: none;
+                                                             color: #232323"
+                                                       href="{% url 'CategoryView' i.slug %}"> {{ i.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -44,7 +48,7 @@
     <div class="row">
     <div class="col-md-12">
         <div class="section-heading">
-            <h2> {{ instruments.name }} մոդելներ</h2>
+            <h2> {{ instruments.name }} մոդելների օգտագործման հրահանգներ</h2>
         </div>
     </div>
     {% for i in instruments.instrument_model.all %}
@@ -53,7 +57,7 @@
             <div class="product-item">
                 <a href="{% url 'model_detail_view' i.id %}"><img src="{{ i.image.url }}  " alt="{{ i.name }}"></a>
                 <div class="down-content">
-                    <a href="{% url 'model_detail_view' i.id %}"><h4>{{ i.name }}</h4></a>
+                    <a style="text-decoration: none" href="{% url 'model_detail_view' i.id %}"><h4>{{ i.name }}</h4></a>
                 </div>
             </div>
         </div>
@@ -88,7 +92,10 @@
                             <div class="col-md-8">
                                 <div class="left-text">
                                     {% if i.header is not None %}
-                                        <h4>{{ i.header | safe }}</h4>
+                                        <h4 style="font-size: 28px;
+                                                   font-weight: 700;
+                                                   color: #633c3d;
+                                                   letter-spacing: 0.5px;">{{ i.header | safe }}</h4>
                                     {% endif %}
                                 <p> {{ i.full_description | safe }}</p>
                                 </div>

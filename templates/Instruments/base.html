@@ -49,22 +49,43 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'Home' %}"> Գլխավոր
-                            <span class="sr-only">(current)</span>
-                        </a>
+                    {% if request.path == '/' %}
+                        <li class="nav-item active">
+                            {% else %}
+                        <li class="nav-item ">
+                    {% endif %}
+                    <a class="nav-link" href="{% url 'Home' %}"> Գլխավոր
+                        <span class="sr-only">(current)</span>
+                    </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'products' %}">Սարքեր</a>
+
+                    {% if request.path == '/Products/' %}
+                        <li class="nav-item active">
+                            {% else %}
+                        <li class="nav-item ">
+                    {% endif %}
+                    <a class="nav-link" href="{% url 'products' %}">Սարքեր</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">Մեր մասին</a>
+                    {% if request.path == '/About/' %}
+                        <li class="nav-item active">
+                            {% else %}
+                        <li class="nav-item ">
+                    {% endif %}
+                    <a class="nav-link" href="{% url 'about' %}">Մեր մասին</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}">Կապ մեզ հետ</a>
+                    {% if request.path == '/contact/' %}
+                        <li class="nav-item active">
+                            {% else %}
+                        <li class="nav-item ">
+                    {% endif %}
+                    <a class="nav-link" href="{% url 'contact' %}">Կապ մեզ հետ</a>
                     </li>
                     {% if user.is_superuser or user.is_staff %}
-                        <li class="nav-item">
+                        {% if request.path == '/admin/' %}
+                        <li class="nav-item active">
+                            {% else %}
+                        <li class="nav-item ">
+                    {% endif %}
                             <a class="nav-link" href="/admin/">Ադմին․ աշխատասենյակ</a>
                         </li>
                     {% endif %}
@@ -75,10 +96,10 @@
                         </li>
                     {% endif %}
                     <li>
-                        <form class="example" method="post" action="{% url 'search' %}">
+                        <form style="margin-top: 10px" class="example" method="post" action="{% url 'search' %}">
                             {% csrf_token %}
-                            <input type="text" placeholder="Search.." name="search">
-                            <button class="kt" type="submit"><i class="fa fa-search"></i></button>
+                            <input  style="border-bottom-left-radius: 20px;border-top-left-radius: 20px;outline: none;border-inline: none;" type=text placeholder="Որոնել․․․" name="search" style="">
+                            <button style="border-bottom-right-radius: 20px;border-top-right-radius: 20px;  background-color:#ff3243;" class="kt" type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </li>
                 </ul>

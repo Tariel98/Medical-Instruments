@@ -182,7 +182,7 @@ button:hover {
     width: 100%;
 }
 
-.aj-nkarh4,
+.aj-nkar h4,
 .left-image-post h4 {
     margin-top: 0px;
 }
@@ -197,5 +197,6 @@ button:hover {
     margin-top: 30px;
 }
 
-
-/* Services */
+.left-text h4{
+    color: #493031;
+}

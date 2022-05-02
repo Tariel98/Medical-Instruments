@@ -65,7 +65,11 @@
                             <div class="col-md-8">
                                 <div class="left-text">
                                     {% if i.header is not None %}
-                                        <h4>{{ i.header | safe }}</h4>
+                                        <h4 style="margin-top: 25px;
+                                                   font-size: 28px;
+                                                   font-weight: 700;
+                                                   color: #633c3d;
+                                                   letter-spacing: 0.5px;">{{ i.header | safe }}</h4>
                                     {% endif %}
                                 <p> {{ i.full_description | safe }}</p>
                                 </div>
@@ -88,7 +92,11 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="right-text">
-                                    <h4>{{ i.header | safe }}</h4>
+                                    <h4 style="
+                                                   font-size: 28px;
+                                                   font-weight: 700;
+                                                   color: #633c3d;
+                                                   letter-spacing: 0.5px;">{{ i.header | safe }}</h4>
                                     <div class="line-dec"></div>
                                     <p> {{ i.full_description | safe }}</p>
                                 </div>
